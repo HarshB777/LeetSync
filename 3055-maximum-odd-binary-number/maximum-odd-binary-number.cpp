@@ -1,28 +1,33 @@
 class Solution {
 public:
     string maximumOddBinaryNumber(string s) {
-        int ones = 0;
+        int ones = count(begin(s),end(s),'1');
+        cout<<ones<<" ones"<<endl;
+        int n = s.size();
+        cout<<"n = "<<n<<endl;
+        int zeroes = n;
+        zeroes-=ones;
+        cout<<zeroes<<" zeroes"<<endl;
 
-        for (char &x: s)
+        string res = "1";
+        ones--;
+
+        
+        
+        while (zeroes>0)
         {
-            if (x=='1')
-                ones++;
+            res+="0";
+            zeroes--;
+        }
+        cout<<"after zeroes: "<<res<<endl;
+        
+        while (ones>0){
+            res+="1";
+            ones--;
         }
 
-        string ans = "";
-        for (int i = 0; i < s.size(); i++)
-        {
-            if (ones > 1){
-                ans+='1';
-                ones--;
-            }
-            else if (i==s.size()-1)
-                ans+='1';
-            else{
-                ans+='0';
-            }
-        }
+        reverse(begin(res),end(res));
 
-        return ans;
+        return res;
     }
 };
