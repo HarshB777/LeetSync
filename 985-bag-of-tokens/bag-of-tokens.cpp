@@ -7,7 +7,7 @@ public:
         int j = n-1;
         int score = 0;
         int maxScore = 0;
-        while (i<n){
+        while (i<=j){
             if (tokens[i] <= power)
             {
                 score++;
