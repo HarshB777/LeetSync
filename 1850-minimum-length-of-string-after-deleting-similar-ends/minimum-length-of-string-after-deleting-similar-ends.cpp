@@ -3,52 +3,37 @@ public:
     int minimumLength(string s) {
         int n = s.size();
 
-        int p1 = 0;
-        int p2 = 0;
+        int i = 0;
+        int j = n-1;
 
-        int s1 = n-1;
-        int s2 = n-1;
-        int k = 0;
-        for (k=0; k < s.size(); k++)
+        while (i < j)
         {
-            cout<<k<<" ";
-        }
-        cout<<endl;
+            char left = s[i];
+            char right = s[j];
 
-        while (p1 < s1)
-        {
-            s1 = s2;
-            p2 = p1;
-            if (s[p1]==s[s1])
+            if (left==right)
             {
-                //prefix right calculation
-                while (s[p2]==s[p1] && p2<s1)
+                while (s[i]==s[i+1] && i<j)
                 {
-                    p2++;
+                    i++;
                 }
-                p2--;
 
-                //suffix left calculation
-                while (s[s1]==s[s2] && s1>p2)
+                while (s[j]==s[j-1] && i<j)
                 {
-                    s1--;
+                    j--;
                 }
-                s1++;
-                cout<<"pre = "<<s[p1]<<" suff = "<<s[s1]<<endl;
-                cout<<"p1 = "<<p1<<" p2 = "<<p2<<endl;
-                cout<<"s1 = "<<s1<<" s2 = "<<s2<<endl;
-                cout<<"***next itr***"<<endl;
-
-                n -= (p2-p1 + s2-s1 + 2);
-                if (n==1)
-                    break;
+                i++;
+                j--;
             }else
             {
                 break;
             }
-            p1 = p2+1;
-            s2 = s1-1;
+
+            
         }
-        return n;
+        cout<<i<<" "<<j<<endl;
+        if (i>j)
+            return 0;
+        return j-i+1;
     }
 };
