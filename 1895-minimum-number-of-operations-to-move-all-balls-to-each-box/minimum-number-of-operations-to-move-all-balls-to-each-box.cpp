@@ -16,11 +16,19 @@ public:
 
         vector<int> ans(n,0);
 
-        for (int i = 0; i < n; i++)
+        /*for (int i = 0; i < n; i++)
         {
 
             for (int x: ahead)
                 ans[i] += abs(x-i);
+        }*/
+
+        for (int x: ahead)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                ans[i] += abs(x-i);
+            }
         }
 
         return ans;
