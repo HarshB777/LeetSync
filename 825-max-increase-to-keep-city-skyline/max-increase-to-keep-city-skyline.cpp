@@ -1,32 +1,35 @@
 class Solution {
 public:
     int maxIncreaseKeepingSkyline(vector<vector<int>>& grid) {
-       int maxchange = 0;
-        int size = grid[0].size();
-        for(int i = 0; i<size;i++)
+        int r = grid.size();
+        int c = grid[0].size();
+
+        vector<int> rm(r,0);
+        vector<int> cm(c,0);
+        int ex = 0;
+        for (int i = 0; i < r; i++)
         {
-            for(int j = 0; j<size;j++)
+            for (int j = 0; j < c; j++)
             {
-                int maxr = 0;
-                int maxc = 0;
-                for(int k = 0; k<size;k++)
-                {
-                    if(grid[i][k]>= maxr)
-                    {
-                        maxr = grid[i][k];
-                    }
-                }
-                for(int l = 0; l<size;l++)
-                {
-                    if(grid[l][j]>= maxc)
-                    {
-                        maxc = grid[l][j];
-                    }
-                }
-                int sky = min(maxr,maxc);
-                maxchange = maxchange + (sky - grid[i][j]); 
+                int curr = grid[i][j];
+                ex += curr;
+                rm[i] = max(curr,rm[i]);
+                cm[j] = max(curr,cm[j]);
             }
         }
-        return maxchange;
+
+        int s = 0;
+        for (int i = 0; i < r; i++)
+        {
+            for (int j = 0; j < c; j++)
+            {
+                //cout<<min(rm[i], cm[j])<<" ";
+                s += min(rm[i], cm[j]);
+            }
+            cout<<endl;
+        }
+
+
+        return s-ex;
     }
 };
