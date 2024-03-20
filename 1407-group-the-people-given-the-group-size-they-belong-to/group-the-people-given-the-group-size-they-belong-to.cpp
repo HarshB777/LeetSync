@@ -6,14 +6,14 @@ public:
         {
             return {{0}};
         }
-        vector<int> cnt(n+1,0);
+        //vector<int> cnt(n+1,0);
         vector<vector<int>> idx(n+1);
 
         for (int i = 0; i < n; i++)
         {
             int curr = gs[i];
 
-            cnt[curr]++;
+            //cnt[curr]++;
             idx[curr].push_back(i);
         }
         vector<vector<int>> ans;
