@@ -8,34 +8,21 @@ public:
         }
         //vector<int> cnt(n+1,0);
         vector<vector<int>> idx(n+1);
-
+        vector<vector<int>> ans;
         for (int i = 0; i < n; i++)
         {
             int curr = gs[i];
 
             //cnt[curr]++;
             idx[curr].push_back(i);
-        }
-        vector<vector<int>> ans;
-        for (int i = 0; i <= n; i++)
-        {
-            if (idx[i].size()==0)
-            {
-                continue;
-            }
 
-            int k = 0;
-            while (k!=idx[i].size())
+            if (idx[curr].size() == curr)
             {
-                vector<int> temp;
-                for (int j = k; j < i+k; j++)
-                {
-                    temp.push_back(idx[i][j]);
-                }
-                ans.push_back(temp);
-                k+=i;
+                ans.push_back(idx[curr]);
+                idx[curr].clear();
             }
         }
+        
         return ans;
     }
 };
