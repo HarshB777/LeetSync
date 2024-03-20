@@ -1,23 +1,28 @@
 class Solution {
 public:
     vector<int> minOperations(string boxes) {
-        vector<int> ans(boxes.size(),0);
-        int cnt = 0;
-        int prev=0;
-        for(int i = 0;i<boxes.size();i++){
-            prev = prev + cnt;
-            ans[i]+=prev;
-            if(boxes[i]=='1')
-            cnt++;
+        vector<int> ahead;
+
+        int n = boxes.size();
+
+        for (int i = 0; i < n; i++)
+        {
+            if (boxes[i] == '1')
+            {
+                ahead.push_back(i);
+            }
         }
-        prev = 0;
-        cnt = 0;
-        for(int i = boxes.size()-1;i>=0;i--){
-            prev = prev + cnt;
-            ans[i]+=prev;
-            if(boxes[i]=='1')
-            cnt++;
+
+        vector<int> ans(n,0);
+
+        for (int i = 0; i < n; i++)
+        {
+
+            for (int x: ahead)
+                ans[i] += abs(x-i);
         }
+
         return ans;
+        
     }
 };
