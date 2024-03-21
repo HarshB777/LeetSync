@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> findingUsersActiveMinutes(vector<vector<int>>& logs, int k) {
-        map<int,unordered_set<int>> hm;
+        unordered_map<int,unordered_set<int>> hm;
         vector<int> ans(k,0);
 
         for (auto x: logs)
