@@ -16,17 +16,14 @@ public:
         sort(temp.begin(),temp.end());
         int last = r-1;
 
-        auto it = hm.end();
+        //auto it = hm.end();
         vector<vector<int>> ans;
         for (int i = 0; i < r; i++)
         {
             vector<int> t;
             int crow = hm[temp[last]];
             last--;
-            for (int j = 0; j < c; j++)
-            {
-                t.push_back(score[crow][j]);
-            }
+            t = score[crow];
             ans.push_back(t);
         }
 
