@@ -20,11 +20,10 @@ public:
         vector<vector<int>> ans;
         for (int i = 0; i < r; i++)
         {
-            vector<int> t;
+
             int crow = hm[temp[last]];
             last--;
-            t = score[crow];
-            ans.push_back(t);
+            ans.push_back(score[crow]);
         }
 
         return ans;
