@@ -1,32 +1,49 @@
 class Solution {
 public:
     int minimumDeletions(vector<int>& nums) {
+        int minVal = INT_MAX;
+        int maxVal = INT_MIN;
+        int minIdx = -1;
+        int maxIdx = -1, n = nums.size();
 
-        int minimum=INT_MAX;
-        int maximum=INT_MIN;
-
-        int minInd=-1;
-        int maxInd=-1;
-
-        for(int j=0;j<nums.size();j++)
+        for (int i = 0; i < n; i++)
         {
-            if(minimum>nums[j])
+            if (nums[i] < minVal)
             {
-                minimum=nums[j];
-                minInd=j;
+                minVal = nums[i];
+                minIdx = i;
             }
-            if(maximum<nums[j])
+
+            if (nums[i] > maxVal)
             {
-                maximum=nums[j];
-                maxInd=j;
+                maxVal = nums[i];
+                maxIdx = i;
             }
         }
 
-        int w1=max(minInd,maxInd)+1;
-        int w2=nums.size()-min(minInd,maxInd);
-        int w3=(min(minInd,maxInd)+1)+(nums.size()-max(minInd,maxInd));
+        if (minIdx==maxIdx)
+            return 1; //size = 1
+        
+        //cout<<minVal<<" "<<minIdx<<endl;
+        //cout<<maxVal<<" "<<maxIdx<<endl;
+        //cout<<endl;
 
-        return min(min(w1,w2),w3);
+        int min1 = min(minIdx,maxIdx);
+        int max1 = max(maxIdx,minIdx);
 
+        //cout<<min1<<" "<<max1<<endl;
+
+        //poss1 - both deleted from front
+        int m1 = max1+1;
+        //poss2 - one deleted from front, one from behinf
+        int m2 = min1+1 + (n-max1);
+        //poss3 - both deleted from behind
+        int m3 = max(n-min1, n-max1);
+
+        //cout<<m1<<" "<<m2<<" "<<m3<<endl;
+
+        return min(min(m1,m2),m3);
+
+        //return -1;
     }
 };
