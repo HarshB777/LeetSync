@@ -1,57 +1,32 @@
 class Solution {
 public:
     int minimumDeletions(vector<int>& nums) {
-        int mi = INT_MAX;
-        int mi_idx = -1;
-        int ma = INT_MIN;
-        int ma_idx = -1;
-        int n = size(nums);
 
-        for (int i = 0; i < n; i++)
+        int minimum=INT_MAX;
+        int maximum=INT_MIN;
+
+        int minInd=-1;
+        int maxInd=-1;
+
+        for(int j=0;j<nums.size();j++)
         {
-            if (nums[i] > ma)
+            if(minimum>nums[j])
             {
-                ma = nums[i];
-                ma_idx = i;
+                minimum=nums[j];
+                minInd=j;
             }
-
-            if (nums[i] < mi)
+            if(maximum<nums[j])
             {
-                mi = nums[i];
-                mi_idx = i;
-            }
-        }
-
-        cout<<ma<<" "<<ma_idx<<endl;
-        cout<<mi<<" "<<mi_idx<<endl;
-        if (ma == mi)
-        {
-            return 1;
-        }
-        int m1 = min(ma_idx,mi_idx);
-        int m2 = max(ma_idx, mi_idx);
-        int cnt = 0;
-        
-        if ((m1+1 != n/2)&&(m1+1) < n-m1)
-        {
-            cnt += (m1+1);
-
-
-            if (m2-m1 < n-m2)
-            {
-                cnt += (m2-m1);
-            }
-            else
-            {
-                cnt += (n-m2);
+                maximum=nums[j];
+                maxInd=j;
             }
         }
-        else
-        {
-            cnt += n-m1;
-        }
 
+        int w1=max(minInd,maxInd)+1;
+        int w2=nums.size()-min(minInd,maxInd);
+        int w3=(min(minInd,maxInd)+1)+(nums.size()-max(minInd,maxInd));
 
-        return cnt;
+        return min(min(w1,w2),w3);
+
     }
 };
