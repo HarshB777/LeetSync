@@ -12,14 +12,13 @@ class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
         vector<ListNode*> vec;
-        int len = 0;
+
         while (head!=NULL)
         {
             vec.push_back(head);
             head = head->next;
-            len++;
         }
 
-        return vec[len/2];
+        return vec[vec.size()/2];
     }
 };
